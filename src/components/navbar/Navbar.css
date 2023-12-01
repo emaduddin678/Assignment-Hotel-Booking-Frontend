@@ -24,9 +24,28 @@
     padding: 5px 10px;
     cursor: pointer;
     color: #004DDA;
-    
+    background-color: white;
 }
 .navButton > a {
     color: #004DDA;
     text-decoration: none;
+}
+
+.mybook{
+    background-color: none;
+    font-weight: 500;
+    color: white;
+    background: transparent;
+    font-size: 22px;
+    margin-right: 80px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 10px;
+    transition: all linear 0.2s;
+}
+
+.mybook:hover{
+    color: gray;
+    background-color: white;
 }

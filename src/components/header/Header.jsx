@@ -3,9 +3,6 @@ import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
-  faPlane,
-  faCar,
-  faTaxi,
   faCalendarDays,
   faPerson,
 } from "@fortawesome/free-solid-svg-icons";
@@ -13,9 +10,10 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/FirebaseAuthContext";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -27,6 +25,8 @@ const Header = ({ type }) => {
       key: "selection",
     },
   ]);
+
+  const { currentUser } = useAuth();
 
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
@@ -70,7 +70,7 @@ const Header = ({ type }) => {
       >
         {type !== "list" && (
           <>
-            <h1 className="headerTitle">
+            <h1 className="headerTitle ">
               Elevate Your Hotel Experience with BD Hotels.
             </h1>
             <p className="headerDesc">
@@ -79,8 +79,10 @@ const Header = ({ type }) => {
               comfort meets excellence. From sophisticated accommodations to
               personalized service, let BD Hotels redefine the way you stay.
             </p>
-            {!thisUser && (
-              <button className="headerBtn">Sign in / Register</button>
+            {!currentUser && (
+              <Link to="/login">
+                <button className="headerBtn">Sign in / Register</button>
+              </Link>
             )}
             <div className="headerSearch">
               <div className="headerSearchItem">

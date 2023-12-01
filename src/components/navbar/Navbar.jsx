@@ -2,15 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/FirebaseAuthContext";
 
 const Navbar = () => {
-  const [thisUser, setThisUser] = useState();
-  const { user } = useContext(AuthContext);
-  useEffect(() => {
-    if (user) {
-      setThisUser(user);
-    }
-  }, []);
+  // const [thisUser, setThisUser] = useState();
+  // const { user } = useContext(AuthContext);
+  const { currentUser } = useAuth();
+  // console.log(currentUser)
+  // useEffect(() => {
+  //   if (user) {
+  //     setThisUser(user);
+  //   }
+  // }, []);
 
   // console.log(thisUser);
 
@@ -20,11 +23,17 @@ const Navbar = () => {
         <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
           <span className="logo">BD Hotels</span>
         </Link>
-        {thisUser ? (
-          thisUser.username
+
+        {/* My booking */}
+        {currentUser ? (
+          currentUser.displayName
         ) : (
           <div className="navItems">
-            <button className="navButton">Register</button>
+            <button className="mybook">My Bookings</button>
+            <button className="navButton">
+              <Link to={"/register"}>Register</Link>
+            </button>
+
             <button className="navButton">
               <Link to="/login">Login</Link>
             </button>

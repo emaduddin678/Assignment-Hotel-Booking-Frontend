@@ -1,3 +1,4 @@
+
 .homeContainer {
   margin-top: 50px;
   display: flex;
@@ -7,6 +8,8 @@
 }
 
 .homeTitle{
-    width: 1024px;
+    width: 100%;
     font-size: 20px;
+    /* padding-left: 200px; */
+    max-width: 1024px;
 }

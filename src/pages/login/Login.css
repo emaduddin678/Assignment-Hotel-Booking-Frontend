@@ -27,6 +27,6 @@
 }
 
 .lButton:disabled{
-  background-color: #0071c28c;
+  background-color: #2aa6ff8c;
   cursor: not-allowed;
 }
