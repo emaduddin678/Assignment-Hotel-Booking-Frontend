@@ -26,7 +26,10 @@ const Navbar = () => {
 
         {/* My booking */}
         {currentUser ? (
-          currentUser.displayName
+          <div style={{display:"flex", alignItems: "center"  }}>
+            <button className="mybook">My Bookings</button>
+            <p>{currentUser.displayName}</p>
+          </div>
         ) : (
           <div className="navItems">
             <button className="mybook">My Bookings</button>

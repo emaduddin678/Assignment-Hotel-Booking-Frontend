@@ -1,7 +1,7 @@
 import "./Registration.scss";
 // import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+// import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import axios from "axios";
 import { userInputs } from "../../formSource";
@@ -69,7 +69,7 @@ const Registration = () => {
             <form encType="multipart/form-data">
               <div className="formInput">
                 <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  {/* Image: <DriveFolderUploadOutlinedIcon className="icon" /> */}
                 </label>
                 <input
                   type="file"
