@@ -88,10 +88,11 @@ const Registration = () => {
                     type={input.type}
                     placeholder={input.placeholder}
                     id={input.id}
+                    name={input.name}
                   />
                 </div>
               ))}
-              <button onClick={handleClick}>Send</button>
+              <button type="submit" onClick={handleClick}>Send</button>
             </form>
           </div>
         </div>

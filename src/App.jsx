@@ -9,9 +9,12 @@ import List from './pages/list/List';
 import Hotel from './pages/hotel/Hotel';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
+import Room from './pages/room/Room';
 
 
 function App() {
+
+
 
   return (
     <BrowserRouter>
@@ -20,6 +23,7 @@ function App() {
           <Route path='/hotels' element={<List />} />
           <Route path='/hotels/:id' element={<Hotel />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/room' element={<Room />} />
           <Route path='/register' element={<Registration />} />
       </Routes>
     </BrowserRouter>

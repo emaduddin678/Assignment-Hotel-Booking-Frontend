@@ -27,9 +27,10 @@ const Hotel = () => {
 
   // http://localhost:8800/api/hotels/find${item._id}
   const { data, loading, error } = useFetch(
-    `http://localhost:8800/api/hotels/find/${id}`
+    `https://assignment-hotel-booking-backend.vercel.app/api/hotels/find/${id}`
   );
   // console.log(data);
+  console.log(data);
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -84,7 +85,11 @@ const Hotel = () => {
   //   },
   // ];
 
-  const handleOpen = (i) => {
+  // const dataUrl =
+  //   params.row.img && params.row.img.contentType
+  //     ? `data:${params.row.img.contentType};base64,${params.row.img.data}`
+  //     : "";
+  const handleOpen = (i) => { 
     setSlideNumber(i);
     setOpen(true);
   };
@@ -112,7 +117,7 @@ const Hotel = () => {
   return (
     <div>
       <Navbar />
-      <Header type="list" /> 
+      <Header type="list" />
 
       {loading ? (
         <h1>Loading...</h1>
@@ -131,8 +136,9 @@ const Hotel = () => {
                 onClick={() => handleMove("l")}
               />
               <div className="sliderWrapper">
+                {/* {console.log(data)} */}
                 <img
-                  src={data.photos[slideNumber]}
+                  src={`data:${data.photos[slideNumber].contentType};base64,${data.photos[slideNumber].data}`}
                   alt=""
                   className="sliderImg"
                 />
@@ -162,8 +168,14 @@ const Hotel = () => {
             <div className="hotelImages">
               {data.photos?.map((photo, i) => (
                 <div className="hotelImgWrapper" key={i}>
+                  {console.log(photo)}
                   <img
-                    src={photo}
+                    // src={photo}
+                    src={
+                      photo?.contentType
+                        ? `data:${photo.contentType};base64,${photo.data}`
+                        : "https://thumbs.dreamstime.com/b/basic-rgb-136169634.jpg"
+                    }
                     alt=""
                     onClick={() => handleOpen(i)}
                     className="hotelImg"

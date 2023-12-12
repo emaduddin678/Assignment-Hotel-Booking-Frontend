@@ -5,7 +5,7 @@ import "./Reserve.css";
 import useFetch from "../../hooks/useFetch";
 import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
-import axios, { all } from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
@@ -143,36 +143,39 @@ const Reserve = ({ setOpen, hotelId }) => {
           onClick={() => setOpen(false)}
         />
         <span>Select your rooms:</span>
-        {data.map((item) => (
-          <div className="rItem" key={item._id}>
-            {/* {console.log(item)} */}
-            <div className="rItemInfo">
-              <div className="rTitle">{item.title}</div>
-              <div className="rDesc">{item.desc}</div>
-              <div className="rMax">
-                Max people: <b>{item.maxPeople}</b>
-              </div>
-              <div>
-                Price: BDT <p className="rPrice">{item.price}</p> Taka
-              </div>
-            </div>
-            <div className="rSelectRooms">
-              {item.roomNumbers.map((roomNumber) => (
-                <div className="room" key={roomNumber._id}>
-                  {/* {console.log(roomNumber)} */}
-                  <label>{roomNumber.number}</label>
-                  <input
-                    type="checkbox"
-                    value={roomNumber._id}
-                    onChange={handleSelect}
-                    disabled={!isAvailable(roomNumber)}
-                  />
-                  {/* {console.log(isAvailable(roomNumber))} */}
+        {console.log(data)}
+        {loading
+          ? "Loading.."
+          : data.map((item) => (
+              <div className="rItem" key={item._id}>
+                {/* {console.log(item)} */}
+                <div className="rItemInfo">
+                  <div className="rTitle">{item.title}</div>
+                  <div className="rDesc">{item.desc}</div>
+                  <div className="rMax">
+                    Max people: <b>{item.maxPeople}</b>
+                  </div>
+                  <div>
+                    Price: BDT <p className="rPrice">{item.price}</p> Taka
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+                <div className="rSelectRooms">
+                  {item.roomNumbers.map((roomNumber) => (
+                    <div className="room" key={roomNumber._id}>
+                      {/* {console.log(roomNumber)} */}
+                      <label>{roomNumber.number}</label>
+                      <input
+                        type="checkbox"
+                        value={roomNumber._id}
+                        onChange={handleSelect}
+                        disabled={!isAvailable(roomNumber)}
+                      />
+                      {/* {console.log(isAvailable(roomNumber))} */}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
         <button onClick={handleClick} className="rButton">
           Reserve Now!
         </button>

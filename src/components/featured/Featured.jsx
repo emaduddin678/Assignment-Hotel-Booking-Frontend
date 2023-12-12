@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Featured = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:8800/api/hotels/countByCity?cities=dhaka,sylhet,chattogram"
+    "https://assignment-hotel-booking-backend.vercel.app/api/hotels/countByCity?cities=dhaka,sylhet,chattogram"
   );
 
   return (

@@ -7,8 +7,8 @@ import { useAuth } from "../../context/FirebaseAuthContext";
 const Navbar = () => {
   // const [thisUser, setThisUser] = useState();
   // const { user } = useContext(AuthContext);
-  const { currentUser } = useAuth();
-  // console.log(currentUser)
+  const { currentUser, logout } = useAuth();
+  // console.log(logout)
   // useEffect(() => {
   //   if (user) {
   //     setThisUser(user);
@@ -16,6 +16,10 @@ const Navbar = () => {
   // }, []);
 
   // console.log(thisUser);
+
+  const handleLogout = () =>{
+    logout()
+  }
 
   return (
     <div className="navbar">
@@ -26,13 +30,32 @@ const Navbar = () => {
 
         {/* My booking */}
         {currentUser ? (
-          <div style={{display:"flex", alignItems: "center"  }}>
-            <button className="mybook">My Bookings</button>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-betwesen",
+            }}
+          >
+            <Link to={"/room"} className="mybook">
+              Rooms
+            </Link>
+            <Link to={"/mybooking"} className="mybook">
+              My Bookings
+            </Link>
+            <button className="logout" onClick={handleLogout}>
+              Logout
+            </button>
             <p>{currentUser.displayName}</p>
           </div>
         ) : (
           <div className="navItems">
-            <button className="mybook">My Bookings</button>
+            <Link to={"/room"} className="mybook">
+              Rooms
+            </Link>
+            <Link to={"/mybooking"} className="mybook">
+              My Bookings
+            </Link>
             <button className="navButton">
               <Link to={"/register"}>Register</Link>
             </button>

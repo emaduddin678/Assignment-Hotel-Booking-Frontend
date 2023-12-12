@@ -5,7 +5,7 @@ import React from "react";
 const PropertyList = () => {
 
   const { data, loading, error } = useFetch(
-    "http://localhost:8800/api/hotels/countByType"
+    "https://assignment-hotel-booking-backend.vercel.app/api/hotels/countByType"
   );
 
   const images = [

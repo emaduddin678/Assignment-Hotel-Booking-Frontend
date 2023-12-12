@@ -3,9 +3,12 @@ import "./SearchItem.css";
 
 const SearchItem = ({ item }) => {
   // console.log(item);
+  const photo = item.photos[0];
   return (
     <div className="searchItem">
-      <img src={item.photos[0]} alt="Hotel Image" className="siImg" />
+      <img src={ photo?.contentType
+                        ? `data:${photo.contentType};base64,${photo.data}`
+                        : "https://thumbs.dreamstime.com/b/basic-rgb-136169634.jpg"} alt="Hotel Image" className="siImg" />
       <div className="siDesc">
         <h1 className="siTitle">{item.name}</h1>
         <span className="siDistance">{item.distance} from center</span>

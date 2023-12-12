@@ -9,6 +9,7 @@ export const userInputs = [
     id: "email",
     label: "Email",
     type: "email",
+    name: "email",
     placeholder: "mahimuddin@gmail.com",
   },
   {

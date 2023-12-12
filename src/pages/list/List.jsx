@@ -2,15 +2,16 @@ import "./List.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import { SearchContext } from "../../context/SearchContext";
 
 const List = () => {
   const location = useLocation();
-  console.log(location.state);
+  // console.log(location.state);
 
   const [destination, setDestination] = useState(location.state.destination);
   const [options, setOptions] = useState(location.state.options);
@@ -20,15 +21,18 @@ const List = () => {
   const [max, setMax] = useState(undefined);
 
   const { data, loading, error, reFetch } = useFetch(
-    `http://localhost:8800/api/hotels?city=${destination.toLowerCase()}&min=${
+    `https://assignment-hotel-booking-backend.vercel.app/api/hotels?city=${destination.toLowerCase()}&min=${
       min || 0
     }&max=${max || 10000}`
   );
 
   // console.log(data);
+  
+  const { dispatch } = useContext(SearchContext);
 
   const handleClick = () => {
     reFetch();
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
   };
 
   return (
